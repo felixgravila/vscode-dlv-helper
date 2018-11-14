@@ -32,6 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
         // vscode.window.showInformationMessage(filename);
 
         let csl = vscode.window.activeTerminal || vscode.window.createTerminal("dlv");
+        csl.show(true);
 
         let selection = editor.selection;
         let text = editor.document.getText(selection);
