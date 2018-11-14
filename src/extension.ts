@@ -41,13 +41,13 @@ export function activate(context: vscode.ExtensionContext) {
         let singleword = (text.match(singlewordregex) || []).map(e => e.replace(singlewordregex, '$1'));
         if(singleword.length === 1 && singleword[0] === text) {
             //only one word selected
-            csl.sendText('dlv '+document+' -filter="'+singleword[0]+'"');
+            csl.sendText('dlv '+document+' -silent -filter="'+singleword[0]+'"');
         } else {
 
             let rgx = / *([a-z][a-zA-Z0-9]*) *\([A-Z][a-zA-Z0-9,]*\) *:-/g;
             let matches = (text.match(rgx) || []).map(e => e.replace(rgx, '$1'));
 
-            let args = "";
+            let args = " -silent";
             for (let fltr of matches) {
                 args = args + ' -filter="' + fltr + '"';
             }
